@@ -1,0 +1,12 @@
+{
+  "product_name": "EL Tester Pro",
+  "tagline": "Electroluminescence testing made effortless",
+  "features": [
+    "High-resolution EL imaging for PV modules",
+    "Automated defect detection and classification",
+    "Compliant with IEC 60904 standards",
+    "Real-time analysis and reporting dashboard"
+  ],
+  "cta_url": "https://example.com/get-started",
+  "contact_email": "sales@example.com"
+}
