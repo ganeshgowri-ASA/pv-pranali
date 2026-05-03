@@ -1,0 +1,53 @@
+Subject: Request for Quotation – {{ product }}
+
+Dear {{ vendor.name }} Sales Team,
+
+We are reaching out to request a formal quotation for the following:
+
+  Product / Part Description : {{ product }}
+  Quantity Required           : {{ quantity | default(1) }}
+  {%- if specs is defined and specs %}
+
+  Technical Specifications:
+  {%- for key, value in specs.items() %}
+    - {{ key }}: {{ value }}
+  {%- endfor %}
+  {%- endif %}
+
+  {%- if delivery_location is defined and delivery_location %}
+
+  Delivery Location           : {{ delivery_location }}
+  {%- endif %}
+  {%- if required_by is defined and required_by %}
+  Required By                 : {{ required_by }}
+  {%- endif %}
+
+We would appreciate the following details in your response:
+  1. Unit price (INR, excluding GST)
+  2. GST rate applicable (HSN code if available)
+  3. Lead time / delivery schedule
+  4. Minimum order quantity (MOQ)
+  5. Payment terms
+  6. Warranty / support terms
+
+Please confirm availability and share the datasheet or product brochure if applicable.
+
+{%- if company_name is defined and company_name %}
+
+Company : {{ company_name }}
+{%- endif %}
+{%- if contact_name is defined and contact_name %}
+Contact : {{ contact_name }}
+{%- endif %}
+{%- if contact_email is defined and contact_email %}
+Email   : {{ contact_email }}
+{%- endif %}
+{%- if contact_phone is defined and contact_phone %}
+Phone   : {{ contact_phone }}
+{%- endif %}
+
+We look forward to your prompt response.
+
+Regards,
+{{ contact_name | default("PV-Pranali Procurement Team") }}
+{{ company_name | default("ASA Engineering") }}
