@@ -1,0 +1,10 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pv-pranali"
+version = "0.1.0"
+description = "Self-driving multi-agent proposal system for PV test equipment"
+requires-python = ">=3.11"
+dependencies = []
