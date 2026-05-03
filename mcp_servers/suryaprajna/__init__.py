@@ -1,0 +1,1 @@
+"""SuryaPrajna MCP server package."""
