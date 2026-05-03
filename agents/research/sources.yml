@@ -1,0 +1,124 @@
+# Research agent source definitions — one entry per vendor
+# Fields: name, base_url, product_pages, selectors, js_heavy, metadata
+
+vendors:
+
+  - name: Pasan
+    base_url: https://www.pasan.ch
+    product_pages:
+      - https://www.pasan.ch/products/solar-simulators
+      - https://www.pasan.ch/products/iv-measurement
+    js_heavy: false
+    selectors:
+      product_name: "h1.product-title, .product-name"
+      price: ".price, .product-price"
+      specs_table: "table.specifications, .spec-table"
+      description: ".product-description, .overview"
+    metadata:
+      country: CH
+      currency: USD
+      category: sun_simulator
+      standards: [IEC_61215, IEC_60904]
+
+  - name: halm
+    base_url: https://www.halm.de
+    product_pages:
+      - https://www.halm.de/en/products/solar-simulators
+      - https://www.halm.de/en/products/flash-testers
+    js_heavy: false
+    selectors:
+      product_name: "h1, .product-title"
+      price: ".price-value, .contact-for-price"
+      specs_table: ".specifications table, .tech-data table"
+      description: ".product-description"
+    metadata:
+      country: DE
+      currency: USD
+      category: sun_simulator
+      standards: [IEC_60904_9, IEC_61215]
+
+  - name: Sinton
+    base_url: https://www.sintoninstruments.com
+    product_pages:
+      - https://www.sintoninstruments.com/products
+      - https://www.sintoninstruments.com/suns-voc
+    js_heavy: false
+    selectors:
+      product_name: "h1.entry-title, .woocommerce-product-title"
+      price: ".price, .woocommerce-Price-amount"
+      specs_table: ".product-attributes table, .specifications"
+      description: ".woocommerce-product-details__short-description"
+    metadata:
+      country: US
+      currency: USD
+      category: iv_tester
+      standards: [IEC_60904]
+
+  - name: Spire
+    base_url: https://www.spiresolar.com
+    product_pages:
+      - https://www.spiresolar.com/products/solar-simulators
+      - https://www.spiresolar.com/products/cell-testers
+    js_heavy: true
+    selectors:
+      product_name: "h1, .product-name, [data-testid='product-title']"
+      price: ".price, [data-testid='price']"
+      specs_table: "table, .specifications-table"
+      description: ".product-overview, .description"
+    metadata:
+      country: US
+      currency: USD
+      category: sun_simulator
+      standards: [IEC_60904_9, ASTM_E927]
+
+  - name: Wavelabs
+    base_url: https://wavelabs.de
+    product_pages:
+      - https://wavelabs.de/products
+      - https://wavelabs.de/sinus-70
+      - https://wavelabs.de/sinus-220
+    js_heavy: true
+    selectors:
+      product_name: "h1, .product-title"
+      price: ".price, .request-quote"
+      specs_table: ".specs table, .technical-data"
+      description: ".product-intro, .description"
+    metadata:
+      country: DE
+      currency: USD
+      category: led_sun_simulator
+      standards: [IEC_60904_9, IEC_61215]
+
+  - name: Endeas
+    base_url: https://www.endeas.fi
+    product_pages:
+      - https://www.endeas.fi/quicksun
+      - https://www.endeas.fi/products
+    js_heavy: false
+    selectors:
+      product_name: "h1, .page-title"
+      price: ".price, .contact-price"
+      specs_table: ".specifications table, .product-specs"
+      description: ".product-description, .intro-text"
+    metadata:
+      country: FI
+      currency: USD
+      category: el_tester
+      standards: [IEC_60904, IEC_61215]
+
+  - name: NISE
+    base_url: https://www.nise.res.in
+    product_pages:
+      - https://www.nise.res.in/testing-calibration
+      - https://www.nise.res.in/solar-simulators
+    js_heavy: false
+    selectors:
+      product_name: "h1, .page-heading, .content-title"
+      price: ".fee-structure, .testing-charges"
+      specs_table: "table, .specifications"
+      description: ".page-content, .description"
+    metadata:
+      country: IN
+      currency: INR
+      category: testing_lab
+      standards: [IEC_61215, IEC_61730, IS_14286]
