@@ -35,3 +35,7 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Confidential URS source documents (never commit customer XLSX files)
+docs/urs/source/*.xlsx
+*.confidential
