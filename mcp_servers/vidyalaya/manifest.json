@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "name": "vidyalaya",
+  "description": "MCP server wrapping vidyalaya-office: generate and parse DOCX, XLSX, PPTX, and PDF documents.",
+  "tools": [
+    {
+      "name": "create_docx",
+      "description": "Create a .docx Word document with a title and body paragraphs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Document title written as Heading 1."
+          },
+          "paragraphs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "List of paragraph strings to append to the document."
+          },
+          "output_path": {
+            "type": "string",
+            "description": "Optional absolute path for the output .docx file.",
+            "default": ""
+          }
+        },
+        "required": ["title", "paragraphs"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string", "description": "Absolute path to the created .docx file." },
+          "base64": { "type": "string", "description": "Base64-encoded file content." },
+          "error": { "type": "string", "description": "Error message if creation failed." }
+        }
+      }
+    },
+    {
+      "name": "create_xlsx",
+      "description": "Create a .xlsx spreadsheet with a named sheet, optional headers, and data rows.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sheet_name": {
+            "type": "string",
+            "description": "Worksheet tab name."
+          },
+          "rows": {
+            "type": "array",
+            "items": { "type": "array" },
+            "description": "List of rows; each row is a list of cell values."
+          },
+          "headers": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional column headers prepended before data rows."
+          },
+          "output_path": {
+            "type": "string",
+            "description": "Optional absolute path for the output .xlsx file.",
+            "default": ""
+          }
+        },
+        "required": ["sheet_name", "rows"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string", "description": "Absolute path to the created .xlsx file." },
+          "base64": { "type": "string", "description": "Base64-encoded file content." },
+          "error": { "type": "string", "description": "Error message if creation failed." }
+        }
+      }
+    },
+    {
+      "name": "create_pptx",
+      "description": "Create a .pptx presentation with a cover slide and content slides. Returns base64-encoded file and file path.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Presentation title shown on the cover slide."
+          },
+          "slides": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string", "description": "Slide heading." },
+                "body": { "type": "string", "description": "Slide body / bullet text." }
+              },
+              "required": ["title"]
+            },
+            "description": "List of content slides to add after the cover."
+          },
+          "output_path": {
+            "type": "string",
+            "description": "Optional absolute path for the output .pptx file.",
+            "default": ""
+          }
+        },
+        "required": ["title", "slides"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string", "description": "Absolute path to the created .pptx file." },
+          "base64": { "type": "string", "description": "Base64-encoded file content." },
+          "error": { "type": "string", "description": "Error message if creation failed." }
+        }
+      }
+    },
+    {
+      "name": "export_pdf",
+      "description": "Convert a .docx or .pptx file to PDF using LibreOffice headless.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "input_path": {
+            "type": "string",
+            "description": "Absolute path to the source .docx or .pptx file."
+          },
+          "output_dir": {
+            "type": "string",
+            "description": "Optional output directory for the PDF (defaults to same dir as input).",
+            "default": ""
+          }
+        },
+        "required": ["input_path"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string", "description": "Absolute path to the generated PDF file." },
+          "error": { "type": "string", "description": "Error message if conversion failed." }
+        }
+      }
+    },
+    {
+      "name": "parse_docx",
+      "description": "Parse a .docx file and extract its title and paragraph text.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Absolute path to the .docx file to parse."
+          }
+        },
+        "required": ["file_path"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string", "description": "Document title (first Heading-style paragraph)." },
+          "paragraphs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "List of non-empty body paragraph strings."
+          },
+          "path": { "type": "string", "description": "Absolute path to the parsed file." },
+          "error": { "type": "string", "description": "Error message if parsing failed." }
+        }
+      }
+    }
+  ]
+}
